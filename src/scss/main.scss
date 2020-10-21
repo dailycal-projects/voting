@@ -1,0 +1,230 @@
+@import 'bootstrap';
+
+@import 'breakpoints';
+@import 'mixins';
+@import 'colors/base';
+@import 'colors/diverging';
+@import 'colors/qualitative';
+@import 'colors/sequential';
+@import 'fonts';
+@import 'icons';
+
+@import 'elements';
+@import 'sankey';
+@import 'story';
+@import 'fonts';
+@import 'sankey_lines';
+@import 'line_graph';
+@import 'nerd-box';
+@import 'refer';
+@import 'navigation';
+@import 'header';
+@import 'footer';
+@import 'photos';
+@import 'buttons';
+@import 'ads';
+@import 'comments';
+@import 'share';
+@import 'credits';
+@import 'graphics';
+
+.dc-correction {
+	font-style: italic;
+	font-size: 14px;
+}
+
+.list-helper-text {
+	display: none;
+}
+
+@media (max-width: $width-medium) {
+    #sponsor-table {
+    	display: block;
+    	margin-top: 40px;
+    }
+
+    .list-helper-text {
+    	display: block;
+    }
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: left;
+    width: 210px;
+    height: 130px;
+    padding: 10px;
+    font: 16px;
+    font-family: "benton-sans";
+    background: white;
+    border: 0px;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.axis {
+  font: 30px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+hr {
+	max-width: 600px;
+}
+
+center {
+  font-family: "benton-sans";
+  font: 18px;
+
+}
+
+b {
+  font-family: "benton-sans-bold";
+}
+
+h4 {
+  font-family: "benton-sans-bold";
+}
+
+.callout-box {
+	background: rgba($dc-blue, 0.1);
+	padding: 30px 0;
+	font-family: $sans;
+	text-align: center;
+	max-width: 900px;
+}
+
+/* Mobile styles */
+
+@media screen and (min-width: 1100px) {
+  svg {
+    zoom: 1.2;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  svg {
+    zoom: 1;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  svg {
+    zoom: 0.7;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  svg {
+    zoom: 0.55;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  svg {
+    zoom: 0.45;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  svg {
+    zoom: 0.37;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #stacked_bar {
+  svg {
+    zoom: 0.33;
+  }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #line_stops {
+  svg {
+    zoom: 0.9;
+  }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #line_search {
+  svg {
+    zoom: 0.9;
+  }
+  }
+}
+@media screen and (max-width: 900px) {
+  #line_stops {
+  svg {
+    zoom: 0.7;
+  }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #line_search {
+  svg {
+    zoom: 0.7;
+  }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #line_stops {
+  svg {
+    zoom: 0.5;
+  }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #line_search {
+  svg {
+    zoom: 0.5;
+  }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #line_stops {
+  svg {
+    zoom: 0.32;
+  }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #line_search {
+  svg {
+    zoom: 0.32;
+  }
+  }
+}
+//@media screen and (max-width: 1500px) {
+  //#stacked_bar {
+     //svg {
+       //zoom: 0.8;
+     //}
+  //}
+//}
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+  }
+  path.domain {
+    stroke: none;
+  }
+  .y .tick line {
+    stroke: #ddd;
+  }

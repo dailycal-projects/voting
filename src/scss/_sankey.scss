@@ -1,0 +1,82 @@
+@media screen and (min-width: 900px) {
+  #sankey_grad {
+    height: 1250px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #sankey_region {
+    height: 550px;
+    svg {
+      zoom: 0.75;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  #sankey_small {
+    height: 550px;
+    svg {
+      zoom: 0.8;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  #sankey_grad {
+    height: 1550px;
+    svg {
+      zoom: 0.75;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  #sankey_pol, #sankey_tech, #sankey_bio {
+    height: 500px;
+    svg {
+      zoom: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #sankey_bus {
+    height: 600px;
+    svg {
+      zoom: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #sankey_pol, #sankey_tech, #sankey_bus, #sankey_bio {
+    height: 475px;
+    svg {
+      zoom: 0.7;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #sankey_grad {
+  height: 1650px;
+    svg {
+      zoom: 0.8;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #sankey_small {
+  height: 500px;
+    svg {
+      zoom: 0.75;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  #sankey_region {
+    height: 550px;
+    svg {
+      zoom: 0.75;
+    }
+  }
+}

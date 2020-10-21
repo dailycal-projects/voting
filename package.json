@@ -1,0 +1,45 @@
+{
+  "name": "dailycal-projects-aff-action",
+  "version": "1.0.0",
+  "description": "A Daily Cal project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests\" && exit 1"
+  },
+  "author": {
+    "name": "Alex Zhao",
+    "email": "axyzhao@berkeley.edu"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "fs-extra": "^9.0.1",
+    "glob": "^7.1.6",
+    "glob-promise": "^3.4.0",
+    "gulp": "^4.0.2",
+    "gulp-awspublish": "^4.1.2",
+    "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
+    "gulp-env": "^0.4.0",
+    "gulp-fail": "^2.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-nodemon": "^2.5.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "gulp-prompt": "^1.2.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-responsive": "^3.0.1",
+    "gulp-rev-all": "^2.0.3",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^5.0.1",
+    "ngrok": "^3.2.7",
+    "node-env-file": "^0.1.8",
+    "nodemon": "^2.0.4",
+    "open": "^7.1.0",
+    "portfinder": "^1.0.27",
+    "run-sequence": "^2.2.1",
+    "secure-keys-dc": "^1.2.0",
+    "yargs": "^15.4.1"
+  },
+  "dependencies": {
+    "archieml-pipe": "^0.1.0",
+    "bootstrap-sass": "^3.4.1"
+  }
+}

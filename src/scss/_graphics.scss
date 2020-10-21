@@ -1,0 +1,163 @@
+#map {
+  width: 90%;
+  height: 500px; 
+  margin: 0 auto;           
+}
+
+#heatmap {
+  margin-left: 10px;
+  margin-right: 10px;
+
+  rect.bordered {
+    stroke: #FFFFFF;
+    stroke-width:2px;   
+  }
+
+  text.mono {
+    font-size: 12px;
+    font-family: "benton-sans";
+  }
+}
+
+#dataset-picker {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.dataset-button {
+  margin: 5px;
+  padding-top: 4px;
+  padding-bottom: 2px;
+  background-color: #efefef;
+  border-style: none;
+  border-radius: 4px;
+  font-color: #efefef;
+}
+
+#marker {
+  text-align: left;
+}
+
+.legend {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+}
+
+.leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0px;
+  text-align: left;
+  font-size: 16px;
+  font-family: "benton-sans";
+  font-weight: 600;
+
+  div {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  img {
+    height: 50px;
+    width: 50px;
+  }
+
+  span {
+    font-size: 16px;
+  }
+}
+
+.leaflet-control-title {
+  text-align: center;
+  font-family: "benton-sans";
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin: 0 auto;
+}
+
+.leaflet-control-layers-list {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0px;
+}
+
+@media (min-width: 500px) and (max-width: 750px) {
+  .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
+
+    img {
+      height: 40px;
+      width: 40px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  .leaflet-control-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
+    img {
+      height: 25px;
+      width: 25px;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .leaflet-control-title {
+    font-size: 14px;
+  }
+}
+
+.leaflet-marker-icon.marker-cluster.marker-cluster-large {
+  background-color: rgba(252, 78, 42, 0.4);
+}
+
+.leaflet-marker-icon.marker-cluster.marker-cluster-large div {
+  background-color: rgba(252, 78, 42, 0.8);
+}
+
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium {
+  background-color: rgba(253, 141, 60, 0.4);
+}
+
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium div {
+  background-color: rgba(253, 141, 60, 0.8);
+}
+
+.leaflet-marker-icon.marker-cluster.marker-cluster-small {
+  background-color: rgba(254, 217, 118, 0.4);
+}
+
+.leaflet-marker-icon.marker-cluster.marker-cluster-small div {
+  background-color: rgba(254, 217, 118, 0.8);
+}
+
+.leaflet-popup-content {
+  
+}
+
+.marker-cluster {
+  background-clip: padding-box;
+  border-radius: 20px;
+}
+
+.marker-cluster div {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 15px;
+  font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+  
+.marker-cluster span {
+  line-height: 30px;
+}

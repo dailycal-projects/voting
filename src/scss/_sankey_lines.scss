@@ -1,0 +1,61 @@
+@media screen and (max-width: 900px) {
+  #bio_line, #pol_line, #bus_line, #tech_line {
+    svg {
+      zoom: 1;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  #bio_line, #pol_line, #bus_line, #tech_line {
+    svg {
+      zoom: 0.7;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #grad_line {
+    svg {
+      zoom: 0.75;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #after_line {
+    svg {
+      zoom: 0.8;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #region_line {
+    svg {
+      zoom: 0.75;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  #grad_line {
+    svg {
+      zoom: 0.8;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #after_line {
+    svg {
+      zoom: 0.75;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #region_line {
+    svg {
+      zoom: 0.75;
+    }
+  }
+}
