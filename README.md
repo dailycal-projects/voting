@@ -2,7 +2,7 @@
 
 | Title | traffic-stops |
 |-|-|
-| Developers    | [Alex Zhao](mailto:axyzhao@berkeley.edu), [Purva Kapshikar](mailto:pkkapshikar@berkeley.edu) |
+| Developers    | [Alex Zhao](mailto:axyzhao@berkeley.edu) |
 | Link | [http://projects.dailycal.org/](http://projects.dailycal.org/) |
 
 

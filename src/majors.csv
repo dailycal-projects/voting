@@ -1,26 +1,25 @@
-group,value1,value2,,
-Agriculture & Agriculture Operations, 45 , 52 ,,
-Architecture, 37 , 38 ,,
-"Area, Ethnic, Cultural, Gender, & Group Studies", 50 , 53 ,,
-Biological & Biomedical Sciences, 45 , 48 ,,
-"Business, Management, & Marketing", 37 , 41 ,,
-Communication & Journalism, 45 , 47 ,,
-Computer & Information Sciences, 34 , 39 ,,
-Education, 55 , 65 ,,
-Engineering & Engineering Technologies, 33 , 39 ,,
-English Language & Literature, 48 , 58 ,,
-"Foreign Languages, Literatures, & Linguistics", 46 , 59 ,,
-Health Professions, 51 , 57 ,,
-History, 57 , 59 ,,
-Legal Professions & Studies, 42 , 51 ,,
-"Liberal Arts & Sciences, & Humanities", 35 , 43 ,,
-Mathematics & Statistics, 30 , 31 ,,
-Multi/Interdisciplinary Studies, 42 , 46 ,,
-Natural Resources & Conservation, 49 , 48 ,,
-Philosophy & Religious Studies, 41 , 47 ,,
-Physical Sciences, 37 , 41 ,,
-Psychology, 53 , 52 ,,
-Public Administration & Social Service Professions, 62 , 65 ,,
-Social Sciences, 45 , 45 ,,
-Unknown Discipline, 25 , 14 ,,
-Visual & Performing Arts, 47 , 56 ,,
+group,value1,value2
+Mathematics & Statistics,30,31
+Engineering & Engineering Technologies,33,39
+Computer & Information Sciences,34,39
+"Liberal Arts & Sciences, & Humanities",35,43
+Architecture,37,38
+"Business, Management, & Marketing",37,41
+Physical Sciences,37,41
+Philosophy & Religious Studies,41,47
+Legal Professions & Studies,42,51
+Multi/Interdisciplinary Studies,42,46
+Agriculture & Agriculture Operations,45,52
+Biological & Biomedical Sciences,45,48
+Communication & Journalism,45,47
+Social Sciences,45,45
+"Foreign Languages, Literatures, & Linguistics",46,59
+Visual & Performing Arts,47,56
+English Language & Literature,48,58
+Natural Resources & Conservation,49,48
+"Area, Ethnic, Cultural, Gender, & Group Studies",50,53
+Health Professions,51,57
+Psychology,53,52
+Education,55,65
+History,57,59
+Public Administration & Social Service Professions,62,65

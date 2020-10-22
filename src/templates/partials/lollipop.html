@@ -5,6 +5,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
+<center>Voting rates by discipline (2016 and 2018 elections)</center>
 <div id="lollipop"></div>
 <script>
 
@@ -23,14 +24,15 @@ var svg_majors = d3.select("#lollipop")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-//d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_cleveland.csv", function(data) {
 d3.csv("majors.csv", function(data) {
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 80])
+    .domain([0, 79])
     .range([ 0, width]);
   svg_majors.append("g")
     .attr("transform", "translate(0," + height + ")")
+    .style("font-family", "benton-sans")
+    .style("font-size", "12")
     .call(d3.axisBottom(x))
 
   // Y axis
@@ -39,6 +41,8 @@ d3.csv("majors.csv", function(data) {
     .domain(data.map(function(d) { return d.group; }))
     .padding(1);
   svg_majors.append("g")
+    .style("font-family", "benton-sans")
+    .style("font-size", "13.5")
     .call(d3.axisLeft(y))
 
   // Lines
@@ -72,6 +76,58 @@ d3.csv("majors.csv", function(data) {
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "4")
       .style("fill", "#4C4082")
+
+  svg_majors.append("g")
+    .selectAll("text")
+    .data(data)
+    .enter().append("text")
+      .attr("x", function(d) { return x(d.value1) - 50; })
+      .attr("y", function(d) { return y(d.group); })
+      .attr("dy", 6)
+      .style("font-family", "benton-sans")
+      .style("font-size", "13")
+      .style("fill", "#6a6a6a")
+    .text(function(d) { return d.value1.toString() + "%" })
+
+  svg_majors.append("g")
+    .selectAll("text")
+    .data(data)
+    .enter().append("text")
+      .attr("x", function(d) { return x(d.value2) + 13; })
+      .attr("y", function(d) { return y(d.group); })
+      .attr("dy", 6)
+      .style("font-family", "benton-sans")
+      .style("font-size", "13")
+      .style("fill", "#6a6a6a")
+    .text(function(d) { return d.value2.toString() + "%" })
+
+  var colors = d3.scaleOrdinal().domain(['Voting rate', 'Registration rate']).range(["#69b3a2", "#4C4082"]);
+
+  var legend = svg_majors.append("g")
+      .style("font-family", "benton-sans")
+      .style("font-size", 16)
+      .style("font-size", 16)
+      .attr("text-anchor", "start")
+      .attr('transform', "translate(" + (width - 250) + ",10)")
+    .selectAll("g")
+    .data(["Voting rate", "Registration rate"])
+  .enter().append("g")
+     .attr("class", "legend")
+    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+legend.append("rect")
+    .attr("x", 10)
+    .attr("width", 16)
+    .attr("height", 16)
+    .attr("opacity", 0.8)
+  .style("fill", function(d) { return colors(d); });
+
+legend.append("text")
+    .data(["Voting rate in 2018", "Voting rate in 2016"])
+    .attr("x", 30)
+    .attr("y", 9)
+    .attr("dy", "0.32em")
+    .text(function(d) { return d; });
 })
 
 </script>

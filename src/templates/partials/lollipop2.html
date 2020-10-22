@@ -5,18 +5,19 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <!-- Create a div where the graph will take place -->
+<center>Voting and registration rates at UC campuses (2016 election)</center>
 <div id="lollipop2"></div>
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 90},
-    width = 600 - margin.left - margin.right,
+var margin = {top: 0, right: 50, bottom: 30, left: 150},
+    width2 = 700 - margin.left - margin.right,
     height2 = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#lollipop2")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", width2 + margin.left + margin.right)
     .attr("height", height2 + margin.top + margin.bottom)
   .append("g")
     .attr("transform",
@@ -27,10 +28,12 @@ var svg = d3.select("#lollipop2")
 d3.csv("schools.csv", function(data) {
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([20, 100])
-    .range([ 0, width]);
+    .domain([0, 100])
+    .range([ 0, width2]);
   svg.append("g")
     .attr("transform", "translate(0," + height2 + ")")
+    .style("font-family", "benton-sans")
+    .style("font-size", "12")
     .call(d3.axisBottom(x))
 
   // Y axis
@@ -39,6 +42,8 @@ d3.csv("schools.csv", function(data) {
     .domain(data.map(function(d) { return d.group; }))
     .padding(1);
   svg.append("g")
+    .style("font-family", "benton-sans")
+    .style("font-size", "16")
     .call(d3.axisLeft(y))
 
   // Lines
@@ -53,6 +58,30 @@ d3.csv("schools.csv", function(data) {
       .attr("stroke", "grey")
       .attr("stroke-width", "1px")
 
+  svg.append("g")
+    .selectAll("text")
+    .data(data)
+    .enter().append("text")
+      .attr("x", function(d) { return x(d.value1) - 50; })
+      .attr("y", function(d) { return y(d.group); })
+      .attr("dy", 6)
+      .style("font-family", "benton-sans")
+      .style("font-size", "14")
+      .style("fill", "#6a6a6a")
+    .text(function(d) { return d.value1.toString() + "%" })
+
+  svg.append("g")
+    .selectAll("text")
+    .data(data)
+    .enter().append("text")
+      .attr("x", function(d) { return x(d.value2) + 10; })
+      .attr("y", function(d) { return y(d.group); })
+      .attr("dy", 6)
+      .style("font-family", "benton-sans")
+      .style("font-size", "14")
+      .style("fill", "#6a6a6a")
+    .text(function(d) { return d.value2.toString() + "%" })
+
   // Circles of variable 1
   svg.selectAll("mycircle")
     .data(data)
@@ -61,7 +90,7 @@ d3.csv("schools.csv", function(data) {
       .attr("cx", function(d) { return x(d.value1); })
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "6")
-      .style("fill", "#69b3a2")
+      .style("fill", "#479bd1")
 
   // Circles of variable 2
   svg.selectAll("mycircle")
@@ -71,7 +100,36 @@ d3.csv("schools.csv", function(data) {
       .attr("cx", function(d) { return x(d.value2); })
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "6")
-      .style("fill", "#4C4082")
+      .style("fill", "#ab4b50")
+
+  var colors = d3.scaleOrdinal().domain(['Voting rate', 'Registration rate']).range(["#AB4B50", "#479BD1"]);
+
+  var legend = svg.append("g")
+      .style("font-family", "benton-sans")
+      .style("font-size", 16)
+      .style("font-size", 16)
+      .attr("text-anchor", "start")
+      .attr('transform', "translate(" + (width2 - 100) + ",10)")
+    .selectAll("g")
+    .data(["Registration rate", "Voting rate"])
+  .enter().append("g")
+     .attr("class", "legend")
+    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+legend.append("rect")
+    .attr("x", 10)
+    .attr("width", 16)
+    .attr("height", 16)
+    .attr("opacity", 0.8)
+  .style("fill", function(d) { return colors(d); });
+
+legend.append("text")
+    .data(["Voting rate", "Registration rate"])
+    .attr("x", 30)
+    .attr("y", 9)
+    .attr("dy", "0.32em")
+    .text(function(d) { return d; });
+
 })
 
 </script>
