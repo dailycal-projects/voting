@@ -82,7 +82,13 @@ d3.csv("majors.csv", function(data) {
     .selectAll("text")
     .data(data)
     .enter().append("text")
-      .attr("x", function(d) { return x(d.value1) - 50; })
+    .attr("x", function(d) {
+      if (d.value1 < d.value2) {
+        return x(d.value1) - 50;
+      } else {
+        return x(d.value1) + 17;
+      }
+      })
       .attr("y", function(d) { return y(d.group); })
       .attr("dy", 6)
       .style("font-family", "benton-sans")
@@ -94,7 +100,13 @@ d3.csv("majors.csv", function(data) {
     .selectAll("text")
     .data(data)
     .enter().append("text")
-      .attr("x", function(d) { return x(d.value2) + 17; })
+    .attr("x", function(d) {
+      if (d.value1 < d.value2) {
+        return x(d.value2) + 17;
+      } else {
+        return x(d.value2) - 50;
+      }
+      })
       .attr("y", function(d) { return y(d.group); })
       .attr("dy", 6)
       .style("font-family", "benton-sans")
@@ -118,7 +130,7 @@ d3.csv("majors.csv", function(data) {
 
 legend.append("circle")
     .attr("cx", 10)
-    .attr("cy", 8)
+    .attr("cy", 9)
     .attr("r", 8)
     .attr("opacity", 0.8)
   .style("fill", function(d) { return colors(d); });
