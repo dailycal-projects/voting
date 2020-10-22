@@ -1,8 +1,8 @@
 {
   "id": "41180754178",
-  "publishPath": "2020/stops/",
-  "stagingUrl": "http://stage-projects.dailycal.org/2020/stops/index.html",
-  "url": "http://projects.dailycal.org/2020/stops/",
+  "publishPath": "2020/voting/",
+  "stagingUrl": "http://stage-projects.dailycal.org/2020/voting/index.html",
+  "url": "http://projects.dailycal.org/2020/voting/",
   "timestamp": "2018-04-10T08:13-0400",
   "dateline": "04/10/18 08:13 PM EDT",
   "header": {
@@ -13,18 +13,18 @@
   },
   "share": {
     "fbook": {
-      "card_title": "Police stops in Berkeley",
-      "card_description": "Disparities in law enforcement",
+      "card_title": "Who votes at UC Berkeley?",
+      "card_description": "Comparing voting rates",
       "author": "dailycal"
     },
     "twitter": {
-      "card_title": "Police stops in Berkeley",
-      "card_description": "Disparities in law enforcement",
-      "share_tweet": "Disparities in law enforcement",
+      "card_title": "Who votes at UC Berkeley?",
+      "card_description": "Comparing voting rates",
+      "share_tweet": "Comparing voting rates",
       "author": "@dailycal"
     },
     "image": {
-      "url": "http://projects.dailycal.org/2020/stops/images/bpd_car.jpg",
+      "url": "",
       "alt": "<Text>",
       "type": "image/jpeg",
       "width": "600",
