@@ -72,11 +72,6 @@ d3.csv("majors.csv", function(data) {
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "4")
       .style("fill", "#69b3a2")
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   // Circles of variable 2
   svg_majors.selectAll("mycircle")
@@ -87,11 +82,6 @@ d3.csv("majors.csv", function(data) {
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "4")
       .style("fill", "#4C4082")
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   svg_majors.append("g")
     .selectAll("text")
@@ -104,11 +94,6 @@ d3.csv("majors.csv", function(data) {
       .style("font-size", "13")
       .style("fill", "#6a6a6a")
     .text(function(d) { return d.value1.toString() + "%" })
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   svg_majors.append("g")
     .selectAll("text")
@@ -121,11 +106,6 @@ d3.csv("majors.csv", function(data) {
       .style("font-size", "13")
       .style("fill", "#6a6a6a")
     .text(function(d) { return d.value2.toString() + "%" })
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   var colors = d3.scaleOrdinal().domain(['Voting rate', 'Registration rate']).range(["#69b3a2", "#4C4082"]);
 
@@ -154,6 +134,26 @@ legend.append("text")
     .attr("y", 9)
     .attr("dy", "0.32em")
     .text(function(d) { return d; });
+
+svg_majors.selectAll("myrect")
+    .data(data)
+    .enter()
+    .append("rect")
+      .attr("x", 0)
+    .attr("y", function(d) { return y(d.group) - 20; })
+      .attr("width", width)
+      .attr("height", 40)
+      .attr("fill", "white")
+      .style("opacity", 0)
+      .attr("stroke", "grey")
+      .attr("stroke-width", "1px")
+      .on("mouseover", function(d) {
+            showLabel(d);
+          })
+      .on("mousemove", moveLabel)
+    .on("mouseout", function(d) { hideLabel(d); })
+
+
 })
 
     function showLabel(d) {

@@ -56,16 +56,8 @@ d3.csv("schools.csv", function(data) {
       .attr("x2", function(d) { return x(d.value2); })
       .attr("y1", function(d) { return y(d.group); })
       .attr("y2", function(d) { return y(d.group); })
-
-  //class without whitespace
-      .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
       .attr("stroke", "grey")
       .attr("stroke-width", "1px")
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   svg.append("g")
     .selectAll("text")
@@ -79,11 +71,6 @@ d3.csv("schools.csv", function(data) {
       .style("font-size", "14")
       .style("fill", "#6a6a6a")
     .text(function(d) { return d.value1.toString() + "%" })
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   svg.append("g")
     .selectAll("text")
@@ -97,11 +84,6 @@ d3.csv("schools.csv", function(data) {
       .style("font-size", "14")
       .style("fill", "#6a6a6a")
     .text(function(d) { return d.value2.toString() + "%" })
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   // Circles of variable 1
   svg.selectAll("mycircle")
@@ -113,11 +95,6 @@ d3.csv("schools.csv", function(data) {
       .attr("r", "6")
       .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
       .style("fill", "#ffa500")
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   // Circles of variable 2
   svg.selectAll("mycircle")
@@ -129,11 +106,6 @@ d3.csv("schools.csv", function(data) {
       .attr("r", "6")
       .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
       .style("fill", "#479bd1")
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   var colors = d3.scaleOrdinal().domain(['Voting rate', 'Registration rate']).range(["#479BD1", "#ffa500"]);
 
@@ -162,6 +134,24 @@ legend.append("text")
     .attr("y", 9)
     .attr("dy", "0.32em")
     .text(function(d) { return d; });
+
+  svg.selectAll("myrect")
+    .data(data)
+    .enter()
+    .append("rect")
+      .attr("x", 0)
+    .attr("y", function(d) { return y(d.group) - 20; })
+      .attr("width", width2)
+      .attr("height", 40)
+      .attr("fill", "white")
+      .style("opacity", 0)
+      .attr("stroke", "grey")
+      .attr("stroke-width", "1px")
+      .on("mouseover", function(d) {
+            showLabel(d);
+          })
+      .on("mousemove", moveLabel)
+    .on("mouseout", function(d) { hideLabel(d); })
 
 })
 
