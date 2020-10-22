@@ -42,6 +42,7 @@ d3.csv("schools.csv", function(data) {
     .domain(data.map(function(d) { return d.group; }))
     .padding(1);
   svg.append("g")
+    .attr("class", "yaxis")
     .style("font-family", "benton-sans")
     .style("font-size", "16")
     .call(d3.axisLeft(y))
@@ -55,8 +56,16 @@ d3.csv("schools.csv", function(data) {
       .attr("x2", function(d) { return x(d.value2); })
       .attr("y1", function(d) { return y(d.group); })
       .attr("y2", function(d) { return y(d.group); })
+
+  //class without whitespace
+      .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
       .attr("stroke", "grey")
       .attr("stroke-width", "1px")
+      .on("mouseover", function(d) {
+            showLabel(d);
+          })
+      .on("mousemove", moveLabel)
+    .on("mouseout", function(d) { hideLabel(d); })
 
   svg.append("g")
     .selectAll("text")
@@ -65,10 +74,16 @@ d3.csv("schools.csv", function(data) {
       .attr("x", function(d) { return x(d.value1) - 50; })
       .attr("y", function(d) { return y(d.group); })
       .attr("dy", 6)
+      .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
       .style("font-family", "benton-sans")
       .style("font-size", "14")
       .style("fill", "#6a6a6a")
     .text(function(d) { return d.value1.toString() + "%" })
+      .on("mouseover", function(d) {
+            showLabel(d);
+          })
+      .on("mousemove", moveLabel)
+    .on("mouseout", function(d) { hideLabel(d); })
 
   svg.append("g")
     .selectAll("text")
@@ -77,10 +92,16 @@ d3.csv("schools.csv", function(data) {
       .attr("x", function(d) { return x(d.value2) + 10; })
       .attr("y", function(d) { return y(d.group); })
       .attr("dy", 6)
+      .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
       .style("font-family", "benton-sans")
       .style("font-size", "14")
       .style("fill", "#6a6a6a")
     .text(function(d) { return d.value2.toString() + "%" })
+      .on("mouseover", function(d) {
+            showLabel(d);
+          })
+      .on("mousemove", moveLabel)
+    .on("mouseout", function(d) { hideLabel(d); })
 
   // Circles of variable 1
   svg.selectAll("mycircle")
@@ -90,7 +111,13 @@ d3.csv("schools.csv", function(data) {
       .attr("cx", function(d) { return x(d.value1); })
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "6")
-      .style("fill", "#479bd1")
+      .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
+      .style("fill", "#ffa500")
+      .on("mouseover", function(d) {
+            showLabel(d);
+          })
+      .on("mousemove", moveLabel)
+    .on("mouseout", function(d) { hideLabel(d); })
 
   // Circles of variable 2
   svg.selectAll("mycircle")
@@ -100,21 +127,27 @@ d3.csv("schools.csv", function(data) {
       .attr("cx", function(d) { return x(d.value2); })
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "6")
-      .style("fill", "#ab4b50")
+      .attr("class", function(d) { return d.group.replace(/\s+/g,''); })
+      .style("fill", "#479bd1")
+      .on("mouseover", function(d) {
+            showLabel(d);
+          })
+      .on("mousemove", moveLabel)
+    .on("mouseout", function(d) { hideLabel(d); })
 
-  var colors = d3.scaleOrdinal().domain(['Voting rate', 'Registration rate']).range(["#AB4B50", "#479BD1"]);
+  var colors = d3.scaleOrdinal().domain(['Voting rate', 'Registration rate']).range(["#479BD1", "#ffa500"]);
 
   var legend = svg.append("g")
       .style("font-family", "benton-sans")
       .style("font-size", 16)
       .style("font-size", 16)
       .attr("text-anchor", "start")
-      .attr('transform', "translate(" + (width2 - 100) + ",10)")
+      .attr('transform', "translate(50,20)")
     .selectAll("g")
     .data(["Registration rate", "Voting rate"])
   .enter().append("g")
      .attr("class", "legend")
-    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+    .attr("transform", function(d, i) { return "translate(" + i * 120 + ",0)"; });
 
 legend.append("rect")
     .attr("x", 10)
@@ -131,5 +164,37 @@ legend.append("text")
     .text(function(d) { return d; });
 
 })
+
+    function showLabel(d) {
+     d3.selectAll('.yaxis').selectAll('.tick>text').each(function(d1, i) {
+       d3.select(this)
+         .style('fill', '#d3d3d3')
+       })
+
+     d3.selectAll('.tick>text').each(function(d1, i) {
+       console.log(d.group);
+       console.log(d1)
+      if (d1 == d.group) {
+       console.log('here')
+       d3.select(this)
+         .style('fill', 'black')
+       }
+     })
+    }
+
+    function moveLabel() {
+      var coords = [d3.event.pageX, d3.event.pageY];
+
+      var top = coords[1] + 30,
+          left = coords[0] - 50;
+    }
+
+    function hideLabel(d) {
+     d3.selectAll('.tick>text').transition().each(function(d1, i) {
+       d3.select(this)
+         .style('fill', 'black').transition().duration(1000)
+     })
+    }
+
 
 </script>
