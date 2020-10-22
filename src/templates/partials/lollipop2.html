@@ -121,10 +121,10 @@ d3.csv("schools.csv", function(data) {
      .attr("class", "legend")
     .attr("transform", function(d, i) { return "translate(" + i * 120 + ",0)"; });
 
-legend.append("rect")
-    .attr("x", 10)
-    .attr("width", 16)
-    .attr("height", 16)
+legend.append("circle")
+    .attr("cx", 10)
+    .attr("cy", 8)
+    .attr("r", 8)
     .attr("opacity", 0.8)
   .style("fill", function(d) { return colors(d); });
 
@@ -140,9 +140,9 @@ legend.append("text")
     .enter()
     .append("rect")
       .attr("x", 0)
-    .attr("y", function(d) { return y(d.group) - 20; })
+    .attr("y", function(d) { return y(d.group) - 40; })
       .attr("width", width2)
-      .attr("height", 40)
+      .attr("height", 80)
       .attr("fill", "white")
       .style("opacity", 0)
       .attr("stroke", "grey")

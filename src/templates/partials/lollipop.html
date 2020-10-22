@@ -57,11 +57,6 @@ d3.csv("majors.csv", function(data) {
       .attr("y2", function(d) { return y(d.group); })
       .attr("stroke", "grey")
       .attr("stroke-width", "1px")
-      .on("mouseover", function(d) {
-            showLabel(d);
-          })
-      .on("mousemove", moveLabel)
-    .on("mouseout", function(d) { hideLabel(d); })
 
   // Circles of variable 1
   svg_majors.selectAll("mycircle")
@@ -121,10 +116,10 @@ d3.csv("majors.csv", function(data) {
      .attr("class", "legend")
     .attr("transform", function(d, i) { return "translate(" + i * 200 + ",-10)"; });
 
-legend.append("rect")
-    .attr("x", 10)
-    .attr("width", 16)
-    .attr("height", 16)
+legend.append("circle")
+    .attr("cx", 10)
+    .attr("cy", 8)
+    .attr("r", 8)
     .attr("opacity", 0.8)
   .style("fill", function(d) { return colors(d); });
 
@@ -140,9 +135,9 @@ svg_majors.selectAll("myrect")
     .enter()
     .append("rect")
       .attr("x", 0)
-    .attr("y", function(d) { return y(d.group) - 20; })
+    .attr("y", function(d) { return y(d.group) - 22.5; })
       .attr("width", width)
-      .attr("height", 40)
+      .attr("height", 45)
       .attr("fill", "white")
       .style("opacity", 0)
       .attr("stroke", "grey")
@@ -163,10 +158,7 @@ svg_majors.selectAll("myrect")
        })
 
      d3.selectAll('.tick>text').each(function(d1, i) {
-       console.log(d.group);
-       console.log(d1)
       if (d1 == d.group) {
-       console.log('here')
        d3.select(this)
          .style('fill', 'black')
        }
