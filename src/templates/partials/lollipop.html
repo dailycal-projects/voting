@@ -10,8 +10,8 @@
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 30, bottom: 30, left: 320},
-    width = 1000 - margin.left - margin.right,
+var margin = {top: 20, right: 30, bottom: 30, left: 315},
+    width = 800 - margin.left - margin.right,
     height = 1200 - margin.top - margin.bottom;
 
 // append the svg_majors object to the body of the page
@@ -27,7 +27,7 @@ var svg_majors = d3.select("#lollipop")
 d3.csv("majors.csv", function(data) {
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([20, 79])
+    .domain([0, 100])
     .range([ 0, width]);
   svg_majors.append("g")
     .attr("transform", "translate(0," + height + ")")
