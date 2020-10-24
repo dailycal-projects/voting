@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://use.typekit.net/mfo3lll.css">
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<div id="line"></div>
+<script>
+
+var groupData = [
+                 { key: "First year", values:
+                                              [
+                                                {grpName:'2016', grpValue:41},
+                                                {grpName:'2018', grpValue:33},
+                                              ]
+                 },
+                 { key: "Sophomore", values:
+                                              [
+                                                {grpName:'2016', grpValue:44},
+                                                {grpName:'2018', grpValue:37},
+                                              ]
+                 },
+                 { key: "Upper-level", values:
+                                              [
+                                                {grpName:'2016', grpValue:43},
+                                                {grpName:'2018', grpValue:39},
+                                              ]
+                 },
+                  ];
+
+    var div = d3.select("#line").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+    pageWidth = 1200
+    var margin = {top: 25, right: 220, bottom: 50, left: 75},
+    width = pageWidth - margin.left - margin.right;
+    width = Math.min(pageWidth, 900 - margin.left - margin.right);
+
+    font_size = "18px"
+    if (width < 600) {
+      font_size = "14px";
+    }
+
+    if (width < 300) {
+      width = 300;
+    }
+    height = 0.7 * width;
+
+    var x0  = d3.scaleBand().rangeRound([0, width], .3);
+    var x1  = d3.scaleBand().paddingInner(0).paddingOuter(0.6);
+    var x2  = d3.scaleBand().paddingInner(0).paddingOuter(0.3);
+    var y   = d3.scaleLinear().rangeRound([height, 0]);
+
+    var xAxis = d3.axisBottom().scale(x0)
+                                .tickValues(groupData.map(d=>d.key));
+
+    var yAxis = d3.axisLeft().scale(y);
+
+    var color = d3.scaleOrdinal().range(["#AB4B50", "#ED9791", "#215775", "#479BD1"]);
+
+
+    var svg_bar = d3.select("#line").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var categoriesNames = groupData.map(function(d) { return d.key; });
+    var rateNames       = groupData[0].values.map(function(d) { return d.grpName; });
+
+    x0.domain(categoriesNames);
+    x1.domain(rateNames).rangeRound([0, x0.bandwidth()]);
+    y.domain([0, d3.max(groupData, function(key) { return d3.max(key.values, function(d) { return d.grpValue; }); })]);
+
+    svg_bar.append("g")
+      .style("font-size", font_size)
+      .style("font-family", "benton-sans")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+        .append("text")
+         .text("Year");
+
+
+    svg_bar.append("g")
+      .style("font-size", "15px")
+      .style("font-family", "benton-sans")
+      .attr("class", "y axis")
+      .style('opacity','0')
+      .call(yAxis)
+        .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .style('font-weight','bold')
+            .text("Tuition");
+
+    svg_bar.select('.y').transition().duration(500).delay(1300).style('opacity','1');
+
+    var slice = svg_bar.selectAll(".slice")
+      .data(groupData)
+      .enter().append("g")
+      .attr("class", "g")
+      .attr("transform",function(d) { return "translate(" + x0(d.key) + ",0)"; });
+
+      slice.selectAll("rect")
+      .data(function(d) { return d.values; })
+        .enter().append("rect")
+            .attr("width", x1.bandwidth())
+            .attr("x", function(d) { return x1(d.grpName); })
+            .style("fill", function(d) { return color(d.grpName) })
+             .attr("y", function(d) { return y(0); })
+             .attr("height", function(d) { return height - y(0); })
+            .on("mouseover", function(d) {
+                d3.select(this).style("fill", d3.rgb(color(d.grpName)).darker(2))
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9)
+                let tuit = "$" + d3.format(",")(d.grpValue).toString()
+                div.html(tuit)
+                    .style("left", (d3.event.pageX + 10) + "px")
+                    .style("top", (d3.event.pageY - 15) + "px")
+                .style("font-size", "14.5px")
+                .style("font-family", "benton-sans");
+            })
+            .on("mouseout", function(d) {
+                d3.select(this).style("fill", color(d.grpName))
+                div.transition()
+                    .duration(300)
+                    .style("opacity", 0);
+            });
+
+
+    slice.selectAll("rect")
+      .transition()
+      .delay(function (d) {return Math.random()*1000;})
+      .duration(1000)
+      .attr("y", function(d) { return y(d.grpValue); })
+      .attr("height", function(d) { return height - y(d.grpValue); });
+
+svg_bar.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 4))
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .style("font-family", "benton-sans")
+        .text("Voting rates by class at UC Berkeley");
+
+svg_bar.append("text")
+        .attr("x", width)
+        .attr("y", height + 40)
+         .style("font-size", "12px")
+         .style("font-family", "benton-sans")
+          .style("font-style", "italic")
+         .text("Source: UC Infocenter");
+
+      //Legend
+
+  var legend = svg_bar.selectAll(".legend")
+      .data(groupData[0].values.map(function(d) { return d.grpName; }))
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
+      .style("opacity","0");
+
+  legend.append("rect")
+      .attr("x", width - 20)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", function(d) { return color(d); });
+
+  legend.append("text")
+      .attr("x", width + 10)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "start")
+      .style("font-family", "benton-sans")
+      .style("font-size", 12)
+      .text(function(d) {return d; });
+
+  legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
+
+</script>
