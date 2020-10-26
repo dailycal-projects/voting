@@ -1,9 +1,9 @@
-# traffic-stops
+# voting rates
 
-| Title | traffic-stops |
+| Title | voting-rates |
 |-|-|
 | Developers    | [Alex Zhao](mailto:axyzhao@berkeley.edu) |
-| Link | [http://projects.dailycal.org/](http://projects.dailycal.org/) |
+| Link | [http://projects.dailycal.org/voting](http://projects.dailycal.org/voting) |
 
 
 ©2020 The Daily Californian
