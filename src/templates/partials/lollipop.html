@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 
-<!-- Load d3.js -->
+<!-- Load d3.js (relevant package)-->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<!-- Create a div where the graph will take place -->
+<!--Create the title of the graphic-->
 <center>Voting rates by discipline (2016 and 2018 elections)</center>
-<div id="lollipop"></div>
-<script>
 
-// set the dimensions and margins of the graph
+<!-- Create a div where the graph will take place -->
+<div id="lollipop"></div>
+
+<!--start Javascript portion-->
+<script>
+// set the dimensions and margins of the graph. These dimensions will resize based on the relative size of the screen by the user.
 var margin = {top: 20, right: 30, bottom: 30, left: 315},
     width = 800 - margin.left - margin.right,
     height = 1200 - margin.top - margin.bottom;
 
-// append the svg_majors object to the body of the page
+// Append the svg_majors object to the div of the page.
+//An SVG is a "Scalable Vector Graphic" -- like a canvas for us to add 2-D shapes onto.
 var svg_majors = d3.select("#lollipop")
+//these attributes set the size of the SVG object
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -25,10 +30,13 @@ var svg_majors = d3.select("#lollipop")
 
 // Parse the Data
 d3.csv("majors.csv", function(data) {
-  // Add X axis
+  // Add X axis. Scale linear creates an array of numbers from 0 to 100 that maps to the width of the page.
   var x = d3.scaleLinear()
     .domain([0, 100])
     .range([ 0, width]);
+
+  // Now we append a "g" element. "g" elements have children which share their attributes.
+  //In this case, the axis will have size 12 benton-sans font.
   svg_majors.append("g")
     .attr("transform", "translate(0," + height + ")")
     .style("font-family", "benton-sans")
@@ -36,6 +44,7 @@ d3.csv("majors.csv", function(data) {
     .call(d3.axisBottom(x))
 
   // Y axis
+  //Same as the X-axis, simply with different numbers.
   var y = d3.scaleBand()
     .range([ 0, height ])
     .domain(data.map(function(d) { return d.group; }))
@@ -47,10 +56,13 @@ d3.csv("majors.csv", function(data) {
     .call(d3.axisLeft(y))
 
   // Lines
+  // selectAll instructs the svg object to look for "myline" elements.
+  //None are found, since we haven't added any lines yet.
+  // Calling "data" binds the data variable to our selection.
+  // Since the selection is empty, D3 creates a new line for each data point "d".
   svg_majors.selectAll("myline")
     .data(data)
-    .enter()
-    .append("line")
+    .enter().append("line")
       .attr("x1", function(d) { return x(d.value1); })
       .attr("x2", function(d) { return x(d.value2); })
       .attr("y1", function(d) { return y(d.group); })
@@ -61,8 +73,7 @@ d3.csv("majors.csv", function(data) {
   // Circles of variable 1
   svg_majors.selectAll("mycircle")
     .data(data)
-    .enter()
-    .append("circle")
+    .enter().append("circle")
       .attr("cx", function(d) { return x(d.value1); })
       .attr("cy", function(d) { return y(d.group); })
       .attr("r", "4")
@@ -142,6 +153,8 @@ legend.append("text")
     .attr("dy", "0.32em")
     .text(function(d) { return d; });
 
+//Again, we select the rectangle objects. Since there are none, we add them.
+//These rectangles are entirely transparent and only exist so that text appears when the user hovers over them.
 svg_majors.selectAll("myrect")
     .data(data)
     .enter()
